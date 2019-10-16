@@ -2,28 +2,26 @@ package library.service;
 
 import java.util.List;
 
-import library.dao.UserDao;
-import library.entity.User;
+import library.dao.BookDao;
+import library.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserServiceImp implements UserService {
-
+public class BookServiceImpl implements BookService {
     @Autowired
-    private UserDao userDao;
+    private BookDao bookDao;
 
     @Transactional
     @Override
-    public void add(User user) {
-        userDao.add(user);
+    public void add(Book book) {
+        bookDao.add(book);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<User> listUsers() {
-        return userDao.listUsers();
+    public List<Book> listBooks() {
+        return bookDao.listBooks();
     }
-
 }
