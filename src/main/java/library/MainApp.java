@@ -76,15 +76,32 @@ public class MainApp {
             System.out.println();
         }
 
+        List<Book> bookByTitle = bookService.findByTitle("The Poems of Wilfred Owen");
+        for (Book book : bookByTitle) {
+            System.out.println("Id = " + book.getBookId());
+            System.out.println("Title = " + book.getTitle());
+            System.out.println("Year = " + book.getYear());
+            System.out.println("Price = " + book.getPrice());
+            System.out.println();
+        }
+
         AuthorService authorService = context.getBean(AuthorService.class);
 
-        // Add Books
+        // Add Authors
         authorService.add(author1);
         authorService.add(author2);
 
-        // Get Books
+        // Get Authors
         List<Author> authors = authorService.listAuthors();
         for (Author author : authors) {
+            System.out.println("Id = " + author.getAuthorId());
+            System.out.println("Title = " + author.getName());
+            System.out.println("Year = " + author.getSurname());
+            System.out.println();
+        }
+
+        List<Author> authorByName = authorService.findByName("Wilfred");
+        for (Author author : authorByName) {
             System.out.println("Id = " + author.getAuthorId());
             System.out.println("Title = " + author.getName());
             System.out.println("Year = " + author.getSurname());
@@ -97,11 +114,11 @@ public class MainApp {
         Rent rent1 = new Rent(localDate, user1, book1, true);
         Rent rent2 = new Rent(localDate, user2, book3, true);
 
-        // Add Books
+        // Add Rents
         rentService.add(rent1);
         rentService.add(rent2);
 
-        // Get Books
+        // Get Rents
         List<Rent> rents = rentService.listRents();
         for (Rent rent : rents) {
             System.out.println("Id = " + rent.getId());
