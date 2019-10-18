@@ -1,9 +1,10 @@
-package library.dao;
+package library.dao.impl;
 
 import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import library.dao.UserDao;
 import library.entity.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public List<User> listUsers() {
-        @SuppressWarnings("unchecked")
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
+        TypedQuery<User> query = sessionFactory
+                .getCurrentSession().createQuery("FROM User", User.class);
         return query.getResultList();
     }
 }

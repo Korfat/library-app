@@ -1,9 +1,10 @@
-package library.service;
+package library.service.impl;
 
 import java.util.List;
 
 import library.dao.UserDao;
 import library.entity.User;
+import library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
