@@ -1,9 +1,10 @@
-package library.dao;
+package library.dao.impl;
 
 import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import library.dao.BookDao;
 import library.entity.Book;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,16 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public List<Book> listBooks() {
-        @SuppressWarnings("unchecked")
-        TypedQuery<Book> query = sessionFactory.getCurrentSession().createQuery("from Book");
+        TypedQuery<Book> query = sessionFactory.getCurrentSession()
+                .createQuery("FROM Book", Book.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Book> findByTitle(String title) {
+        TypedQuery<Book> query = sessionFactory.getCurrentSession()
+                .createQuery("FROM Book WHERE title LIKE CONCAT('%', :title, '%')", Book.class);
+        query.setParameter("title", title);
         return query.getResultList();
     }
 }
