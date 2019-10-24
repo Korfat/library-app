@@ -1,6 +1,7 @@
 package library.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import library.dao.UserDao;
 import library.entity.User;
@@ -19,6 +20,12 @@ public class UserServiceImp implements UserService {
     @Override
     public void add(User user) {
         userDao.add(user);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Optional<User> get(Long id) {
+        return userDao.get(id);
     }
 
     @Transactional(readOnly = true)
