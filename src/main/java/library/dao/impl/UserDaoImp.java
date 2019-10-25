@@ -1,6 +1,7 @@
 package library.dao.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.TypedQuery;
 
@@ -19,6 +20,11 @@ public class UserDaoImp implements UserDao {
     @Override
     public void add(User user) {
         sessionFactory.getCurrentSession().save(user);
+    }
+
+    @Override
+    public Optional<User> get(Long id) {
+        return Optional.ofNullable(sessionFactory.getCurrentSession().get(User.class, id));
     }
 
     @Override
