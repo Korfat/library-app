@@ -4,6 +4,7 @@
     <title>Create</title>
 </head>
 <body>
+<jsp:include page="../views/header.jsp"/>
 <form action="${pageContext.request.contextPath}/book/add" method="post">
     <table>
         <tr>
