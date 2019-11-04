@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import library.config.AppConfig;
 import library.entity.Author;
 import library.entity.Book;
+import library.entity.Role;
 import library.service.BookService;
+import library.service.RoleService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,5 +38,15 @@ public class InjectDataController {
         bookService.add(book1);
         bookService.add(book2);
         bookService.add(book3);
+
+        RoleService roleService = context.getBean(RoleService.class);
+
+        Role roleUser = new Role("ROLE_USER");
+        Role roleAdmin = new Role("ROLE_ADMIN");
+
+        roleService.add(roleUser);
+        roleService.add(roleAdmin);
+
+        context.close();
     }
 }
